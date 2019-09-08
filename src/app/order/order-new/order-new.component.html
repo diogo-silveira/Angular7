@@ -1,0 +1,96 @@
+<div class="panel-header panel-header-sm">
+</div>
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <form [formGroup]="orderForm" novalidate (submit)="save()">
+          <div class="card-header row">
+            <div class="col">
+              <h5 class="title">Order detail</h5>
+            </div>
+            <div class="col-lg-3 col">
+              <button type="submit" class="btn btn-primary pull-right ">Save</button>
+            </div>
+          </div>
+          <div class="card-body">
+
+            <div class="row">
+              <div class="col-md-5 pr-1">
+                <div class="form-group">
+                  <label>Order Number (disabled)</label>
+                  <input type="text" class="form-control" [formControl]="ordeNumberCtrl" disabled="" placeholder="Order Number" name="OrdeNumber">
+                </div>
+              </div>
+              <div class="col-md-3 px-1" *ngIf="orderForm.value.orderDate">
+                <div class="form-group">
+                  <label>Date</label>
+                  <input type="text" class="form-control" placeholder="Date" name="OrderDate" [formControl]="orderDateCtrl">
+              
+                </div>
+              </div>
+              <div class="col-md-4 pl-1">
+                <div class="form-group">
+                  <label>Name</label>
+                  <input name="consumerName" class="form-control" placeholder="Name" [formControl]="consumerNameCtrl">
+                  <div *ngIf="consumerNameCtrl.invalid && (consumerNameCtrl.dirty || consumerNameCtrl.touched)"  class="alert-danger">
+                    <div *ngIf="consumerNameCtrl.errors?.required">
+                      *Name is required.
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <label>Address</label>
+                  <input type="text" class="form-control" [formControl]="shippingAddressCtrl" placeholder="Address" name="ShippingAddress">
+                  <div *ngIf="shippingAddressCtrl.invalid && (shippingAddressCtrl.dirty || shippingAddressCtrl.touched)"  class="alert-danger">
+                      <div *ngIf="shippingAddressCtrl.errors?.required">
+                        *Shipping address is required.
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 pl-1" *ngIf="orderForm.value.shippingDate">
+                <div class="form-group">
+                  <label>Shipping Date</label>
+                  <input type="text" class="form-control" [formControl]="shippingDateCtrl" placeholder="Shipping Date" name="ShippingDate" required>
+                  <div *ngIf="shippingDateCtrl.invalid && (shippingDateCtrl.dirty || shippingDateCtrl.touched)"  class="alert-danger">
+                      <div *ngIf="shippingDateCtrl.errors?.required">
+                        *Shipping date is required.
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Description</label>
+                  <input type="text" class="form-control" placeholder="Order description" [formControl]="descriptionCtrl" name="Description">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 pr-1">
+                <div class="form-group">
+                  <label>SKu</label>
+                  <input type="text" class="form-control" [formControl]="supplierCodeCtrl" placeholder="SKu" name="SupplierCode" >
+                  <div *ngIf="supplierCodeCtrl.invalid && (supplierCodeCtrl.dirty || supplierCodeCtrl.touched)"  class="alert-danger">
+                      <div *ngIf="supplierCodeCtrl.errors?.required">
+                        *SKU is required.
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

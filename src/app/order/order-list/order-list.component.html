@@ -1,0 +1,68 @@
+<div class="panel-header panel-header-sm">
+</div>
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header row">
+          <div class="col">
+              <h5 class="title">Orders</h5>
+          </div>
+          <div class="col-lg-3 col">
+            <a routerLink="/order/order-new"><button type="button" class="btn btn-primary pull-right ">New Order</button></a>
+          </div>
+        </div>
+        <div class="card-body px-lg-0 pb-lg-0 ">
+         
+            <div class="row mx-0">
+              <div class="col"></div>
+              <div class="col-lg-3">
+                <input type="text" class="p-2 m-2" placeholder="Type to filter" (keyup)="updateFilter($event)" />
+              </div>
+            </div>
+            <div class="w-100">
+              <ngx-datatable #table name="table" class="material w-100 my-0" [rows]="listOrder" [columnMode]="'flex'"
+                [headerHeight]="50" [footerHeight]="50" [rowHeight]="50" [scrollbarV]="true"
+                [sorts]="[{prop: 'OrderNumber', dir: 'asc'}]">
+
+                <ngx-datatable-column name="Order Number" prop="OrderNumber" [flexGrow]="0.5"  >
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{row.OrderNumber}}
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Name" prop="ConsumerName" [flexGrow]="1" >
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{row.ConsumerName}}
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Address" prop="ShippingAddress" [flexGrow]="1">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{row.ShippingAddress}}
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Description" prop="Description" [flexGrow]="2">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{row.Description}}
+                    </ng-template>
+                  </ngx-datatable-column>
+
+                <ngx-datatable-column name="Actions" [flexGrow]="0.5" class="text-center" [headerClass]="text-center">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    <div class="text-center"> 
+                      <a class="p-1" title="Update" (click)="updateItem(row)"><i class="now-ui-icons loader_gear"></i></a>
+                      <a class="p-1" title="Delete" (click)="removeItem(row)"><i class="now-ui-icons ui-1_simple-remove"></i></a>
+                  </div>
+                  </ng-template>
+                </ngx-datatable-column>
+
+              </ngx-datatable>
+            </div>
+         
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
